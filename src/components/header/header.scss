@@ -1,0 +1,27 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 25px;
+  background-color: #e1f2f7;
+  padding: 1rem 0;
+
+  .title {
+    font-family: "Bigelow Rules";
+    font-size: 5rem;
+    font-weight: 700;
+    margin: 1rem;
+  }
+
+  .options {
+    width: 50%;
+    margin: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    .option {
+      padding: 10px 15px;
+      cursor: pointer;
+    }
+  }
+}
