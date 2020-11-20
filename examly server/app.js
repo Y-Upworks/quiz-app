@@ -6,6 +6,7 @@ const mongoose=require('mongoose');
 const {MONGOURI}=require('./keys');
 const auth=require('./routes/auth');
 const category=require('./routes/category');
+const question=require('./routes/question');
 
 
 
@@ -23,5 +24,6 @@ mongoose.connection.on('error',()=>{
 })
 app.use('/',auth);
 app.use('/category',category);
+app.use('/question',question);
 
 app.listen(4000,()=>{console.log('server is running')})

@@ -5,7 +5,7 @@ const Category=require('../models/category');
 const checkAuth=require('../middleware/requirelogin');
 
 
-router.get('/',(req,res)=>{
+router.get('/',checkAuth,(req,res)=>{
     Category.find()
     .then(category=>{
         if(category.length>=1)

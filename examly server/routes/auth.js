@@ -4,6 +4,7 @@ const User=require('../models/user');
 const bcrypt=require('bcryptjs');
 const {JWT_SECRET}=require('../keys')
 const jwt=require('jsonwebtoken')
+
 router.get('/signin',(req,res)=>{
     const {email,password}=req.body;
     if(!email||!password){
@@ -44,8 +45,8 @@ router.get('/signin',(req,res)=>{
 })
 
 router.post('/signup',(req,res)=>{
-    const {email,password,name}=req.body;
-    if(!email||!password||!name){
+    const {email,password,name,photo}=req.body;
+    if(!email||!password||!name||!photo){
         return  res.status(422).json({error:"Please  add all the fields"});
     }
     else{
@@ -60,7 +61,8 @@ router.post('/signup',(req,res)=>{
                     const user=new User({
                         email:email,
                         password:hashedpassword,
-                        name:name
+                        name:name,
+                        photo:photo
                 })
                 user.save()
                 .then(user=>{
