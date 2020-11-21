@@ -79,15 +79,4 @@ module.exports = router;
 //     questions:{
 //         {
 //             question:question,
-//             optionoption
-//         },
-//         {
-
-//         },
-//         {
-
-//         }
-
-//     },
-//     result:result:
-// }
+//

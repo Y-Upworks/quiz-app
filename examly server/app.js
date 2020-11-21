@@ -7,8 +7,9 @@ const { MONGOURI } = require("./keys");
 const auth = require("./routes/auth");
 const category = require("./routes/category");
 const question = require("./routes/question");
+const result = require("./routes/result");
 
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 5000;
 
 app.use(cors());
 mongoose.connect(MONGOURI, { useNewUrlParser: true, useUnifiedTopology: true });
@@ -24,6 +25,7 @@ mongoose.connection.on("error", () => {
 app.use("/", auth);
 app.use("/category", category);
 app.use("/question", question);
+app.use("/result", result);
 
 app.listen(port, () => {
   console.log(`Server is running on ${port}`);

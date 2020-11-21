@@ -5,7 +5,7 @@ const bcrypt = require("bcryptjs");
 const { JWT_SECRET } = require("../keys");
 const jwt = require("jsonwebtoken");
 
-router.get("/signin", (req, res) => {
+router.post("/signin", (req, res) => {
   const { email, password } = req.body;
   if (!email || !password) {
     return res.status(422).json({ error: "Please  add all the fields" });

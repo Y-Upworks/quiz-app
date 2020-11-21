@@ -5,6 +5,7 @@ const checkAuth = require("../middleware/requirelogin");
 
 router.get("/", checkAuth, (req, res) => {
   Category.find()
+    .select("-__v")
     .then((category) => {
       if (category.length >= 1) {
         res.status(200).json({
@@ -36,9 +37,11 @@ router.post("/", checkAuth, (req, res) => {
           newCategory
             .save()
             .then((result) => {
-              res
-                .status(200)
-                .json({ post: result, message: "successfully added" });
+              const { _id, categoryname } = result;
+              res.status(200).json({
+                category: { _id, categoryname },
+                message: "successfully added",
+              });
             })
             .catch((err) => {
               console.log(err);
