@@ -11,6 +11,7 @@ const Header = () => {
         <div className="option">ABOUT</div>
         <div className="option">SIGN IN</div>
         <div className="option">PROFILE</div>
+        <div className="option">ADMIN</div>
       </div>
     </div>
   );
