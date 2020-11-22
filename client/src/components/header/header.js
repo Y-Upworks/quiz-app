@@ -1,19 +1,45 @@
 import React from "react";
 
+import { Link } from "react-router-dom";
+
 import "./header.scss";
 
 const Header = () => {
   return (
-    <div className="header">
-      <div className="title">Quiz App</div>
-      <div className="options">
-        <div className="option">HOME</div>
-        <div className="option">ABOUT</div>
-        <div className="option">SIGN IN</div>
-        <div className="option">PROFILE</div>
-        <div className="option">ADMIN</div>
+    <nav>
+      <div className="nav-wrapper white">
+        <Link to="/" className="brand-logo left">
+          Examly App
+        </Link>
+        <ul id="nav-mobile" className="right ">
+          <li>
+            <Link to="/" className="option">
+              HOME
+            </Link>
+          </li>
+          <li>
+            <Link to="/about" className="option">
+              ABOUT
+            </Link>
+          </li>
+          <li>
+            <Link to="/login" className="option">
+              SIGN IN
+            </Link>
+          </li>
+          <li>
+            <Link to="/profile" className="option">
+              PROFILE
+            </Link>
+          </li>
+          <li>
+            <Link to="/admin" className="option">
+              ADMIN
+            </Link>
+          </li>
+        </ul>
       </div>
-    </div>
+    </nav>
   );
 };
 

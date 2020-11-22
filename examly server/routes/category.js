@@ -21,8 +21,10 @@ router.get("/", checkAuth, (req, res) => {
       console.log(err);
     });
 });
+
 router.post("/", checkAuth, (req, res) => {
   const { categoryname } = req.body;
+  console.log(req.body);
   if (!categoryname) {
     return res.status(422).json({ error: "Please  add all the fields" });
   } else {
@@ -54,4 +56,5 @@ router.post("/", checkAuth, (req, res) => {
       });
   }
 });
+
 module.exports = router;
