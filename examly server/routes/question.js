@@ -3,7 +3,7 @@ const router = express.Router();
 const Question = require("../models/question");
 const checkAuth = require("../middleware/requirelogin");
 
-router.post("/", checkAuth, (req, res) => {
+router.post("/", (req, res) => {
   const {
     question,
     option1,

@@ -17,14 +17,30 @@ const AdminPanel = () => {
   return (
     <div className="admin-panel">
       <div className="admin-panel__actions">
-        <button onClick={() => onPanelClicked("add-category")}>
+        <button
+          className="btn waves-effect waves-light #64b5f6 red darken-1"
+          onClick={() => onPanelClicked("add-category")}
+        >
           Add Category
         </button>
-        <button onClick={() => onPanelClicked("create-test")}>
+        <button
+          className="btn waves-effect waves-light #64b5f6 green darken-1"
+          onClick={() => onPanelClicked("create-test")}
+        >
           Create Test
         </button>
-        <button onClick={() => onPanelClicked("users")}>Users</button>
-        <button onClick={() => onPanelClicked("reports")}>Reports</button>
+        <button
+          className="btn waves-effect waves-light #64b5f6 yellow darken-1"
+          onClick={() => onPanelClicked("users")}
+        >
+          Users
+        </button>
+        <button
+          className="btn waves-effect waves-light #64b5f6 blue darken-1"
+          onClick={() => onPanelClicked("reports")}
+        >
+          Reports
+        </button>
       </div>
       <div className="admin-panel__content">
         {currentPanel === "add-category" && <AddCategory />}

@@ -24,7 +24,7 @@ mongoose.connection.on("error", () => {
 });
 app.use("/", auth);
 app.use("/category", category);
-app.use("/question", question);
+app.use("/addquestion", question);
 app.use("/result", result);
 
 app.listen(port, () => {
