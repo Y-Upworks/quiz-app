@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, useHistory } from "react-router-dom";
 import "./header.scss";
+import AuthContext from "../../context/AuthContext";
 
 const Header = () => {
+  const auth = useContext(AuthContext);
   const history = useHistory();
   const logout = () => {
     window.localStorage.clear();
+    auth.logout();
     // dispatch({ type: "CLEAR" });
     history.push("/login");
   };
@@ -27,35 +30,45 @@ const Header = () => {
               ABOUT
             </Link>
           </li>
-          <li>
-            <Link to="/login" className="option">
-              SIGN IN
-            </Link>
-          </li>
-          <li>
-            <Link to="/profile" className="option">
-              PROFILE
-            </Link>
-          </li>
-          <li>
-            <Link to="/admin" className="option">
-              ADMIN
-            </Link>
-          </li>
-          <li>
-            <Link to="/signup" className="option">
-              SIGNUP
-            </Link>
-          </li>
-          <li
-            key="b"
-            style={{ color: "black", marginRight: "10px" }}
-            onClick={() => {
-              logout();
-            }}
-          >
-            LOGOUT
-          </li>
+          {!auth.user && (
+            <li>
+              <Link to="/login" className="option">
+                SIGN IN
+              </Link>
+            </li>
+          )}
+          {auth.user && (
+            <li>
+              <Link to="/profile" className="option">
+                PROFILE
+              </Link>
+            </li>
+          )}
+          {auth.user && (
+            <li>
+              <Link to="/admin" className="option">
+                ADMIN
+              </Link>
+            </li>
+          )}
+          {!auth.user && (
+            <li>
+              <Link to="/signup" className="option">
+                SIGNUP
+              </Link>
+            </li>
+          )}
+          {auth.user && (
+            <li
+              key="b"
+              style={{ color: "black", marginRight: "10px", cursor: "pointer" }}
+              onClick={() => {
+                logout();
+              }}
+            >
+              LOGOUT
+            </li>
+          )}
         </ul>
       </div>
     </nav>

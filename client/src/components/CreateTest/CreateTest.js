@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import M from "materialize-css";
 import "./CreateTest.scss";
 import { useHistory } from "react-router-dom";
 
+import CategoryContext from "../../context/CategoryContext";
+
 const CreateTest = () => {
+  const categories = useContext(CategoryContext);
   const history = useHistory();
-  const [categories, setCategories] = useState([]);
   const [category, setcategory] = useState("");
   const [question, setQuestion] = useState("");
   const [option1, setoption1] = useState("");
@@ -13,22 +15,6 @@ const CreateTest = () => {
   const [option3, setoption3] = useState("");
   const [option4, setoption4] = useState("");
   const [answer, setanswer] = useState("");
-
-  useEffect(() => {
-    fetch("http://localhost:5000/category", {
-      method: "GET",
-      headers: {
-        // Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-        Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmYmEyYzk0MzJiZDE0NDA5MGVmY2Q1ZCIsImlhdCI6MTYwNjAzODU3MH0.2Kk0Pw7jt3o2kPMFzmMztL9vrU5ujJ9kSVShCHcSfB4`,
-        "Content-Type": "application/json;charset=utf-8",
-      },
-    })
-      .then((res) => res.json())
-      .then((result) => setCategories(result.category))
-      .catch((err) => {
-        console.error(err);
-      });
-  }, []);
 
   const buttonIsDisabled = () => {
     if (
@@ -92,13 +78,13 @@ const CreateTest = () => {
   };
   return (
     <div className="create-test">
-      {categories.length > 0 && (
+      {categories.categories.length > 0 && (
         <select
           onChange={(e) => setcategory(e.target.value)}
           name="category"
           id="category"
         >
-          {categories.map((category) => (
+          {categories.categories.map((category) => (
             <option key={category._id} value={category._id}>
               {category.categoryname}
             </option>

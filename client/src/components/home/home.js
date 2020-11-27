@@ -1,9 +1,23 @@
-import React from "react";
+import React, { useContext } from "react";
+
+import CategoryContext from "../../context/CategoryContext";
 
 import "./home.scss";
 
 const HomePage = () => {
-  return <div className="home-page">Home</div>;
+  const categories = useContext(CategoryContext);
+
+  return (
+    <div className="home">
+      {categories.categories.map((category) => {
+        return (
+          <div className="home__card" key={category._id}>
+            {category.categoryname}
+          </div>
+        );
+      })}
+    </div>
+  );
 };
 
 export default HomePage;

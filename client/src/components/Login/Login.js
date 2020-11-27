@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import M from "materialize-css";
+import AuthContext from "../../context/AuthContext";
 
 const Login = ({ history }) => {
+  const auth = useContext(AuthContext);
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const PostData = () => {
@@ -30,6 +32,7 @@ const Login = ({ history }) => {
         if (data.error) {
           M.toast({ html: data.error, classes: "#c62828 red darken-3" });
         } else {
+          auth.login(data.user);
           localStorage.setItem("jwt", data.token);
           localStorage.setItem("user", JSON.stringify(data.user));
           // dispatch({ type: "USER", payload: data.user });
