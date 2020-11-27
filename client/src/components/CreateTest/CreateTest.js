@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import M from "materialize-css";
 import "./CreateTest.scss";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+
 const CreateTest = () => {
   const history = useHistory();
   const [categories, setCategories] = useState([]);
@@ -27,6 +28,25 @@ const CreateTest = () => {
         console.error(err);
       });
   }, []);
+
+  const buttonIsDisabled = () => {
+    let isDisabled = false;
+
+    if (
+      question === "" ||
+      option1 === "" ||
+      option2 === "" ||
+      option3 === "" ||
+      option4 === "" ||
+      answer === ""
+    ) {
+      isDisabled = true;
+    }
+
+    console.log(isDisabled);
+
+    return isDisabled;
+  };
 
   const postquestion = () => {
     console.log(category);
@@ -73,7 +93,9 @@ const CreateTest = () => {
           id="category"
         >
           {categories.map((category) => (
-            <option value={category._id}>{category.categoryname}</option>
+            <option key={category._id} value={category._id}>
+              {category.categoryname}
+            </option>
           ))}
         </select>
       )}
@@ -114,6 +136,7 @@ const CreateTest = () => {
         onChange={(e) => setanswer(e.target.value)}
       ></input>
       <button
+        disabled={buttonIsDisabled()}
         onClick={() => {
           postquestion();
         }}
