@@ -16,7 +16,7 @@ const Signup = () => {
       M.toast({ html: "invalid email", classes: "#c62828 red darken-3" });
       return;
     }
-    fetch("http://localhost:4000/signup", {
+    fetch("http://localhost:5000/signup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -33,7 +33,7 @@ const Signup = () => {
           M.toast({ html: data.error, classes: "#c62828 red darken -3" });
         } else {
           M.toast({ html: data.message, classes: "#43a047 green darken -1" });
-          history.push("/signin");
+          history.push("/login");
         }
         console.log(data);
       })
@@ -63,7 +63,6 @@ const Signup = () => {
         ></input>
         <button
           className="btn waves-effect waves-light #64b5f6 blue darken-1"
-          disabled
           onClick={() => PostData()}
         >
           Signup

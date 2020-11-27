@@ -1,10 +1,15 @@
 import React from "react";
-
-import { Link } from "react-router-dom";
-
+import { Link, useHistory } from "react-router-dom";
 import "./header.scss";
 
 const Header = () => {
+  const history = useHistory();
+  const logout = () => {
+    window.localStorage.clear();
+    // dispatch({ type: "CLEAR" });
+    history.push("/login");
+  };
+
   return (
     <nav>
       <div className="nav-wrapper white">
@@ -36,6 +41,20 @@ const Header = () => {
             <Link to="/admin" className="option">
               ADMIN
             </Link>
+          </li>
+          <li>
+            <Link to="/signup" className="option">
+              SIGNUP
+            </Link>
+          </li>
+          <li
+            key="b"
+            style={{ color: "black", marginRight: "10px" }}
+            onClick={() => {
+              logout();
+            }}
+          >
+            LOGOUT
           </li>
         </ul>
       </div>
