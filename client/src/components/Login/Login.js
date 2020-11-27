@@ -14,7 +14,7 @@ const Login = ({ history }) => {
       M.toast({ html: "invalid email", classes: "#c62828 red darken-3" });
       return;
     }
-    fetch("http://localhost:4000/signin", {
+    fetch("http://localhost:5000/signin", {
       method: "post",
       headers: {
         "Content-Type": "application/json",
@@ -64,7 +64,6 @@ const Login = ({ history }) => {
 
         <button
           className="btn waves-effect waves-light #64b5f6 blue darken-1"
-          disabled
           onClick={() => PostData()}
         >
           Login

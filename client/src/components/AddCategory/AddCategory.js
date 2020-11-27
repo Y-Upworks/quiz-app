@@ -1,10 +1,13 @@
-import React, { useState } from "react";
-
+import React, { useState, useEffect } from "react";
+import M from "materialize-css";
 import "./AddCategory.scss";
 
 const AddCategory = () => {
   const [category, setCategory] = useState("");
 
+  useEffect(() => {
+    setCategory("");
+  }, []);
   const addCategoryHandler = (e) => {
     e.preventDefault();
 
@@ -20,7 +23,14 @@ const AddCategory = () => {
       }),
     })
       .then((res) => res.json())
-      .then((result) => console.log(result))
+      .then((data) => {
+        if (data.error) {
+          M.toast({ html: data.error, classes: "#c62828 red darken -3" });
+          setCategory("");
+        } else {
+          M.toast({ html: data.message, classes: "#43a047 green darken -1" });
+        }
+      })
       .catch((err) => {
         console.error(err);
       });

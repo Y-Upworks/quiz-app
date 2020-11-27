@@ -47,7 +47,7 @@ router.post("/signin", (req, res) => {
 
 router.post("/signup", (req, res) => {
   const { email, password, name, photo } = req.body;
-  if (!email || !password || !name || !photo) {
+  if (!email || !password || !name) {
     return res.status(422).json({ error: "Please  add all the fields" });
   } else {
     User.findOne({ email: email })
@@ -62,7 +62,7 @@ router.post("/signup", (req, res) => {
                 email: email,
                 password: hashedpassword,
                 name: name,
-                photo: photo,
+                // photo: photo,
               });
               user
                 .save()
