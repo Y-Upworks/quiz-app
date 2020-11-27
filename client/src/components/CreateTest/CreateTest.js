@@ -13,6 +13,7 @@ const CreateTest = () => {
   const [option3, setoption3] = useState("");
   const [option4, setoption4] = useState("");
   const [answer, setanswer] = useState("");
+
   useEffect(() => {
     fetch("http://localhost:5000/category", {
       method: "GET",
@@ -30,8 +31,6 @@ const CreateTest = () => {
   }, []);
 
   const buttonIsDisabled = () => {
-    let isDisabled = false;
-
     if (
       question === "" ||
       option1 === "" ||
@@ -40,12 +39,19 @@ const CreateTest = () => {
       option4 === "" ||
       answer === ""
     ) {
-      isDisabled = true;
+      return true;
     }
 
-    console.log(isDisabled);
-
-    return isDisabled;
+    if (
+      answer === option1 ||
+      answer === option2 ||
+      answer === option3 ||
+      answer === option4
+    ) {
+      return false;
+    } else {
+      return true;
+    }
   };
 
   const postquestion = () => {
