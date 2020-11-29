@@ -6,6 +6,7 @@ import Login from "./components/Login/Login";
 import SignUp from "./components/Signup/Signup";
 import HomePage from "./components/home/home";
 import AdminPanel from "./components/AdminPanel/AdminPanel";
+import Instructions from "./components/Instructions/Instructions";
 
 import AuthContext from "./context/AuthContext";
 import CategoryContext from "./context/CategoryContext";
@@ -15,6 +16,7 @@ import "./global.styles.scss";
 function App() {
   const [user, setUser] = useState(null);
   const [categories, setCategories] = useState([]);
+  const [currentSelectedCategory, setCurrentSelectedCategory] = useState(null);
 
   const login = (user) => {
     setUser(user);
@@ -22,6 +24,10 @@ function App() {
 
   const logout = () => {
     setUser(null);
+  };
+
+  const setCategory = (category) => {
+    setCurrentSelectedCategory(category);
   };
 
   useEffect(() => {
@@ -47,7 +53,9 @@ function App() {
   }, []);
 
   return (
-    <CategoryContext.Provider value={{ categories: categories }}>
+    <CategoryContext.Provider
+      value={{ categories, currentSelectedCategory, setCategory }}
+    >
       <AuthContext.Provider value={{ user, login, logout }}>
         <BrowserRouter>
           <div>
@@ -57,6 +65,7 @@ function App() {
               <Route exact path="/login" component={Login} />
               <Route exact path="/signup" component={SignUp} />
               <Route exact path="/admin" component={AdminPanel} />
+              <Route exact path="/instructions" component={Instructions} />
               <Redirect to="/" />
             </Switch>
           </div>
