@@ -81,4 +81,20 @@ router.post("/signup", (req, res) => {
   }
 });
 
+router.get("/users", (req, res) => {
+  User.find()
+    .then((user) => {
+      if (user.length < 1) {
+        res.status(200).json({
+          message: "no user found",
+        });
+      } else {
+        res.status(200).json({
+          user: user,
+          message: "successfull",
+        });
+      }
+    })
+    .catch((err) => console.log(err));
+});
 module.exports = router;

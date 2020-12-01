@@ -1,10 +1,9 @@
 import React, { useContext } from "react";
-
 import CategoryContext from "../../context/CategoryContext";
 
 import "./Instructions.scss";
 
-const Instructions = () => {
+const Instructions = ({ history }) => {
   const categories = useContext(CategoryContext);
 
   return (
@@ -66,7 +65,7 @@ const Instructions = () => {
         </ul>
         <div className="actions">
           <button>START</button>
-          <button>BACK</button>
+          <button onClick={() => history.push("/")}>BACK</button>
         </div>
       </div>
     </div>

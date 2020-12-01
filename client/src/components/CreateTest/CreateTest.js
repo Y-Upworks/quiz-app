@@ -77,72 +77,77 @@ const CreateTest = () => {
       .catch((err) => console.log(err));
   };
   return (
-    <div className="create-test">
-      {categories.categories.length > 0 && (
-        <select
-          onChange={(e) => setcategory(e.target.value)}
-          name="category"
-          id="category"
-        >
-          {categories.categories.map((category) => (
-            <option key={category._id} value={category._id}>
-              {category.categoryname}
-            </option>
-          ))}
-        </select>
-      )}
-      <input
-        type="text"
-        placeholder="Question"
-        value={question}
-        onChange={(e) => setQuestion(e.target.value)}
-      ></input>
-      <input
-        type="text"
-        placeholder="option1"
-        value={option1}
-        onChange={(e) => setoption1(e.target.value)}
-      ></input>
-      <input
-        type="text"
-        placeholder="option2"
-        value={option2}
-        onChange={(e) => setoption2(e.target.value)}
-      ></input>
-      <input
-        type="text"
-        placeholder="option3"
-        value={option3}
-        onChange={(e) => setoption3(e.target.value)}
-      ></input>
-      <input
-        type="text"
-        placeholder="option4"
-        value={option4}
-        onChange={(e) => setoption4(e.target.value)}
-      ></input>
-      <input
-        type="text"
-        placeholder="answer"
-        value={answer}
-        onChange={(e) => setanswer(e.target.value)}
-      ></input>
-      <button
-        disabled={buttonIsDisabled()}
-        onClick={() => {
-          postquestion();
-        }}
-        className="btn waves-effect waves-light #64b5f6 blue darken-1"
-      >
-        Submit/new ques
-      </button>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <button
-        onClick={() => history.push("/")}
-        className="btn waves-effect waves-light #64b5f6 blue darken-1"
-      >
-        End Test
-      </button>
+    <div className="add-category  mycard">
+      <div className="card auth-card">
+        <h2>Add Question</h2>
+        <div className="create-test">
+          {categories.categories.length > 0 && (
+            <select
+              onChange={(e) => setcategory(e.target.value)}
+              name="category"
+              id="category"
+            >
+              {categories.categories.map((category) => (
+                <option key={category._id} value={category._id}>
+                  {category.categoryname}
+                </option>
+              ))}
+            </select>
+          )}
+          <input
+            type="text"
+            placeholder="Question"
+            value={question}
+            onChange={(e) => setQuestion(e.target.value)}
+          ></input>
+          <input
+            type="text"
+            placeholder="option1"
+            value={option1}
+            onChange={(e) => setoption1(e.target.value)}
+          ></input>
+          <input
+            type="text"
+            placeholder="option2"
+            value={option2}
+            onChange={(e) => setoption2(e.target.value)}
+          ></input>
+          <input
+            type="text"
+            placeholder="option3"
+            value={option3}
+            onChange={(e) => setoption3(e.target.value)}
+          ></input>
+          <input
+            type="text"
+            placeholder="option4"
+            value={option4}
+            onChange={(e) => setoption4(e.target.value)}
+          ></input>
+          <input
+            type="text"
+            placeholder="answer"
+            value={answer}
+            onChange={(e) => setanswer(e.target.value)}
+          ></input>
+          <button
+            disabled={buttonIsDisabled()}
+            onClick={() => {
+              postquestion();
+            }}
+            className="btn waves-effect waves-light #64b5f6 blue darken-1"
+          >
+            Submit/new ques
+          </button>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <button
+            onClick={() => history.push("/")}
+            className="btn waves-effect waves-light #64b5f6 blue darken-1"
+          >
+            End Test
+          </button>
+        </div>
+      </div>
     </div>
   );
 };
