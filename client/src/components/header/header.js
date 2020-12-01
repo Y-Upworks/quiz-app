@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Link, useHistory } from "react-router-dom";
 import "./header.scss";
+import M from "materialize-css";
 import AuthContext from "../../context/AuthContext";
 
 const Header = () => {
@@ -22,14 +23,14 @@ const Header = () => {
         <ul id="nav-mobile" className="right ">
           <li>
             <Link to="/" className="option">
-              HOME
+              <i class="material-icons">home</i>
             </Link>
           </li>
-          <li>
+          {/* <li>
             <Link to="/about" className="option">
               ABOUT
             </Link>
-          </li>
+          </li> */}
           {!auth.user && (
             <li>
               <Link to="/login" className="option">
@@ -40,7 +41,7 @@ const Header = () => {
           {auth.user && (
             <li>
               <Link to="/profile" className="option">
-                PROFILE
+                <i class="material-icons">account_circle</i>
               </Link>
             </li>
           )}

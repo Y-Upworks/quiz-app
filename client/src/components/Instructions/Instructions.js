@@ -64,7 +64,7 @@ const Instructions = ({ history }) => {
           </li>
         </ul>
         <div className="actions">
-          <button>START</button>
+          <button onClick={() => history.push("/testmode")}>START</button>
           <button onClick={() => history.push("/")}>BACK</button>
         </div>
       </div>

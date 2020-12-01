@@ -27,6 +27,9 @@ const CreateTest = () => {
     ) {
       return true;
     }
+    if (((option1 != option2) != option3) != option4) {
+      return false;
+    }
 
     if (
       answer === option1 ||
@@ -43,7 +46,7 @@ const CreateTest = () => {
   const postquestion = () => {
     console.log(category);
     //debugger;
-    fetch("http://localhost:5000/addquestion", {
+    fetch("http://localhost:5000/question/add", {
       method: "post",
       headers: {
         "Content-Type": "application/json",

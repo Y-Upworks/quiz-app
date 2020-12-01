@@ -7,7 +7,7 @@ import SignUp from "./components/Signup/Signup";
 import HomePage from "./components/home/home";
 import AdminPanel from "./components/AdminPanel/AdminPanel";
 import Instructions from "./components/Instructions/Instructions";
-
+import TestScreen from "./components/TestScreen/TestScreen";
 import AuthContext from "./context/AuthContext";
 import CategoryContext from "./context/CategoryContext";
 
@@ -66,6 +66,7 @@ function App() {
               <Route exact path="/signup" component={SignUp} />
               <Route exact path="/admin" component={AdminPanel} />
               <Route exact path="/instructions" component={Instructions} />
+              <Route exact path="/testmode" component={TestScreen} />
               <Redirect to="/" />
             </Switch>
           </div>

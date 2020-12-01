@@ -3,7 +3,7 @@ const router = express.Router();
 const Question = require("../models/question");
 const checkAuth = require("../middleware/requirelogin");
 
-router.post("/", (req, res) => {
+router.post("/add", (req, res) => {
   const {
     question,
     option1,
@@ -54,7 +54,7 @@ router.post("/", (req, res) => {
   }
 });
 
-router.get("/", checkAuth, (req, res) => {
+router.get("/all", checkAuth, (req, res) => {
   Question.find()
     .populate("category", "_id categoryname")
     .then((questions) => {
@@ -72,6 +72,17 @@ router.get("/", checkAuth, (req, res) => {
     .catch((err) => console.log(err));
 });
 
+router.get("/:id", (req, res) => {
+  const id = req.params.id;
+  Question.find({ category: id })
+    .then((questions) => {
+      if (!questions) {
+        return res.status(404).json({ message: "no  question found" });
+      }
+      res.status(200).json({ message: "success", questions: questions });
+    })
+    .catch((err) => console.log(err));
+});
 module.exports = router;
 
 // data:{
