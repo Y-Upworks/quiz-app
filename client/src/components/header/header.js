@@ -23,7 +23,7 @@ const Header = () => {
         <ul id="nav-mobile" className="right ">
           <li>
             <Link to="/" className="option">
-              <i class="material-icons">home</i>
+              <i className="material-icons">home</i>
             </Link>
           </li>
           {/* <li>
@@ -41,7 +41,7 @@ const Header = () => {
           {auth.user && (
             <li>
               <Link to="/profile" className="option">
-                <i class="material-icons">account_circle</i>
+                <i className="material-icons">account_circle</i>
               </Link>
             </li>
           )}
