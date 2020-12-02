@@ -2,42 +2,46 @@ import React, { useContext, useEffect, useState } from "react";
 import CategoryContext from "../../context/CategoryContext";
 import M from "materialize-css";
 import "./TestScreen.scss";
-const TestScreen = () => {
+const TestScreen = ({ history }) => {
   const category = useContext(CategoryContext);
   const [questions, setQuestions] = useState([]);
-  const [result, setResult] = useState();
   useEffect(() => {
-    fetch(
-      `http://localhost:5000/question/${category.currentSelectedCategory._id}`,
-      {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmYmEyYzk0MzJiZDE0NDA5MGVmY2Q1ZCIsImlhdCI6MTYwNjAzODU3MH0.2Kk0Pw7jt3o2kPMFzmMztL9vrU5ujJ9kSVShCHcSfB4`,
-          "Content-Type": "application/json;charset=utf-8",
-        },
-      }
-    )
-      .then((res) => res.json())
-      .then((result) => {
-        setQuestions(
-          result.questions.map((question) => {
-            return {
-              ...question,
-              ischecked1: false,
-              ischecked2: false,
-              ischecked3: false,
-              ischecked4: false,
-            };
-          })
-        );
-      })
-      .catch((err) => console.log(err));
+    if (!category.currentSelectedCategory) {
+      history.push("/");
+    } else {
+      fetch(
+        `http://localhost:5000/question/${category.currentSelectedCategory._id}`,
+        {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmYmEyYzk0MzJiZDE0NDA5MGVmY2Q1ZCIsImlhdCI6MTYwNjAzODU3MH0.2Kk0Pw7jt3o2kPMFzmMztL9vrU5ujJ9kSVShCHcSfB4`,
+            "Content-Type": "application/json;charset=utf-8",
+          },
+        }
+      )
+        .then((res) => res.json())
+        .then((result) => {
+          setQuestions(
+            result.questions.map((question) => {
+              return {
+                ...question,
+                ischecked1: false,
+                ischecked2: false,
+                ischecked3: false,
+                ischecked4: false,
+              };
+            })
+          );
+        })
+
+        .catch((err) => console.log(err));
+    }
   }, []);
 
   const verifyquestions = (e, id) => {
     console.log(e.target.value);
     const res = questions.find((question) => {
-      return question._id == id;
+      return (question._id = id);
     });
     if (e.target.value === res.option1) {
       res.ischecked1 = true;
@@ -45,19 +49,19 @@ const TestScreen = () => {
       res.ischecked3 = false;
       res.ischecked4 = false;
     }
-    if (e.target.value == res.option2) {
+    if (e.target.value === res.option2) {
       res.ischecked2 = true;
       res.ischecked1 = false;
       res.ischecked3 = false;
       res.ischecked4 = false;
     }
-    if (e.target.value == res.option3) {
+    if (e.target.value === res.option3) {
       res.ischecked3 = true;
       res.ischecked1 = false;
       res.ischecked2 = false;
       res.ischecked4 = false;
     }
-    if (e.target.value == res.option4) {
+    if (e.target.value === res.option4) {
       res.ischecked4 = true;
       res.ischecked1 = false;
       res.ischecked2 = false;
@@ -75,16 +79,16 @@ const TestScreen = () => {
     var totalQuestions = questions.length;
 
     questions.map((ques) => {
-      if (ques.ischecked1 == true && ques.option1 == ques.answer) {
+      if (ques.ischecked1 === true && ques.option1 === ques.answer) {
         correct = correct + 1;
       }
-      if (ques.ischecked2 == true && ques.option2 == ques.answer) {
+      if (ques.ischecked2 === true && ques.option2 === ques.answer) {
         correct = correct + 1;
       }
-      if (ques.ischecked3 == true && ques.option3 == ques.answer) {
+      if (ques.ischecked3 === true && ques.option3 === ques.answer) {
         correct = correct + 1;
       }
-      if (ques.ischecked4 == true && ques.option4 == ques.answer) {
+      if (ques.ischecked4 === true && ques.option4 === ques.answer) {
         correct = correct + 1;
       }
     });
