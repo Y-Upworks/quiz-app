@@ -27,9 +27,6 @@ const CreateTest = () => {
     ) {
       return true;
     }
-    if (((option1 != option2) != option3) != option4) {
-      return false;
-    }
 
     if (
       answer === option1 ||
