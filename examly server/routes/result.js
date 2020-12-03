@@ -3,15 +3,16 @@ const router = express.Router();
 const Result = require("../models/result");
 const checkAuth = require("../middleware/requirelogin");
 
-router.post("/", checkAuth, (req, res) => {
-  const { user, questions, result } = req.body;
-  if (!user || !questions || !result) {
+router.post("/save", (req, res) => {
+  const { user, category, percentage, marks } = req.body;
+  if (!user || !category || !marks || !percentage) {
     res.status(422).json({ error: "please fill all the fields" });
   } else {
     const newResult = new Result({
       user: user,
-      questions: questions,
-      result: result,
+      category: category,
+      percentage: percentage,
+      marks: marks,
     });
     newResult
       .save()

@@ -4,15 +4,21 @@ const resultSchema = new mongoose.Schema(
     user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "user",
+      required: true,
     },
-    questions: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "question",
-      },
-    ],
-    result: {
+    category: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "category",
+      required: true,
+    },
+
+    percentage: {
       type: String,
+      required: true,
+    },
+    marks: {
+      type: String,
+      required: true,
     },
   },
   {
