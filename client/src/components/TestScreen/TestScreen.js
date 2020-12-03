@@ -41,7 +41,7 @@ const TestScreen = ({ history }) => {
   const verifyquestions = (e, id) => {
     console.log(e.target.value);
     const res = questions.find((question) => {
-      return (question._id = id);
+      return question._id = id;
     });
     if (e.target.value === res.option1) {
       res.ischecked1 = true;
