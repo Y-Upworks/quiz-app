@@ -9,9 +9,7 @@ const resultSchema = new mongoose.Schema(
     category: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "category",
-      required: true,
     },
-
     percentage: {
       type: String,
       required: true,

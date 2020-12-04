@@ -17,7 +17,12 @@ module.exports = (req, res, next) => {
 
     const { id } = payload;
     User.findById(id).then((userdata) => {
-      req.user = userdata;
+      if (!userdata) {
+        return res.status(422).json({ err: "user not exists" });
+      } else {
+        req.user = userdata;
+      }
+
       // console.log(req.user);
       next();
     });

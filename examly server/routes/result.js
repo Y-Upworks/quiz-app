@@ -28,11 +28,17 @@ router.post("/save", (req, res) => {
 router.get("/showresult", checkAuth, (req, res) => {
   const { _id } = req.user;
   Result.findOne({ user: _id })
+    .populate("category")
+    // .exec((err, posts) => {
+    //   console.log("Populated User " + posts);
+    // })
     .then((userexist) => {
+      console.log(userexist);
       if (!userexist) {
         res.status(200).json({ message: "no result found" });
       } else {
         Result.find({ user: _id })
+          .populate("category")
           .then((userresults) => {
             res.status(200).json({
               userresults,

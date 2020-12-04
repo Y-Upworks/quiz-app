@@ -40,7 +40,7 @@ const Header = () => {
           )}
           {auth.user && (
             <li>
-              <Link to="/profile" className="option">
+              <Link to="/result" className="option">
                 <i className="material-icons">account_circle</i>
               </Link>
             </li>

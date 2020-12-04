@@ -1,3 +1,6 @@
 [1127/204207.105:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
 [1201/080300.928:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
 [1201/195057.217:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[1203/205643.633:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[1203/205643.661:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\yash verma\AppData\Local\Google\Chrome\User Data\Crashpad\attachments\b16ae7cf-481f-4f11-87af-c6dce8b6af27: The system cannot find the path specified. (0x3)
+[1204/191033.075:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)

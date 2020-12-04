@@ -3,7 +3,7 @@ const router = express.Router();
 const Category = require("../models/category");
 const checkAuth = require("../middleware/requirelogin");
 
-router.get("/", checkAuth, (req, res) => {
+router.get("/", (req, res) => {
   Category.find()
     .select("-__v")
     .then((category) => {
@@ -22,7 +22,7 @@ router.get("/", checkAuth, (req, res) => {
     });
 });
 
-router.post("/", checkAuth, (req, res) => {
+router.post("/", (req, res) => {
   const { categoryname } = req.body;
   console.log(req.body);
   if (!categoryname) {
