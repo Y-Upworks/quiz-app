@@ -2,22 +2,34 @@
   margin: 10px auto;
   width: 80vw;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
+  // background-image: url("https://image.freepik.com/free-photo/never-stop-learning-quote-hand-holding-flower_53876-94796.jpg");
+}
+.pic {
+  width: auto;
+  height: 100vh;
+  border-image-repeat: space;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-image: url("https://image.freepik.com/free-photo/never-stop-learning-quote-hand-holding-flower_53876-94796.jpg");
 }
 
 .home__card {
   cursor: pointer;
-  font-size: 24px;
+  font-size: 34px;
   text-transform: uppercase;
   font-weight: 700;
   margin: 20px;
   height: 250px;
-  width: 300px;
-  background: coral;
+  width: 270px;
+  background: url("https://png.pngtree.com/thumb_back/fh260/background/20190223/ourmid/pngtree-pure-retro-vintage-kraft-paper-texture-background-paperstationerypaper-textureshadingbackground-image_69622.jpg");
   color: black;
   display: flex;
   justify-content: center;
   align-items: center;
+  border-top-left-radius: 32px;
+  border-bottom-right-radius: 32px;
 }

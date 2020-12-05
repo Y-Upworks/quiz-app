@@ -22,7 +22,7 @@ router.get("/", (req, res) => {
     });
 });
 
-router.post("/", (req, res) => {
+router.post("/", checkAuth, (req, res) => {
   const { categoryname } = req.body;
   console.log(req.body);
   if (!categoryname) {

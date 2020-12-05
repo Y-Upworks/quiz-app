@@ -4,7 +4,22 @@
   margin: 2.5%;
   padding: 1%;
   border: 5px solid black;
-  border-radius: 5px;
+  // border-radius: 20px;
+  border-top-left-radius: 32px;
+  border-bottom-right-radius: 32px;
+
+  background: #e0eafc; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #cfdef3,
+    #e0eafc
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #cfdef3,
+    #e0eafc
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
   box-shadow: 3px 3px rgb(200, 199, 199);
 }
 

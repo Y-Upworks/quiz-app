@@ -3,7 +3,7 @@ const router = express.Router();
 const Question = require("../models/question");
 const checkAuth = require("../middleware/requirelogin");
 
-router.post("/add", (req, res) => {
+router.post("/add", checkAuth, (req, res) => {
   const {
     question,
     option1,
@@ -72,7 +72,7 @@ router.get("/all", checkAuth, (req, res) => {
     .catch((err) => console.log(err));
 });
 
-router.get("/:id", (req, res) => {
+router.get("/:id", checkAuth, (req, res) => {
   const id = req.params.id;
   Question.find({ category: id })
     .then((questions) => {

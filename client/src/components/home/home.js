@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-
+import M from "materialize-css";
 import CategoryContext from "../../context/CategoryContext";
 
 import "./home.scss";
@@ -18,21 +18,26 @@ const HomePage = (props) => {
   };
 
   return (
-    <div className="home">
-      {categories.categories.map((category) => {
-        return (
-          <div
-            className="home__card"
-            key={category._id}
-            onClick={() => {
-              categoryClickHandler(category._id);
-            }}
-          >
-            {category.categoryname}
-          </div>
-        );
-      })}
-    </div>
+    <>
+      <div className="pic"></div>
+      <div className="home">
+        {categories.categories.map((category) => {
+          return (
+            <>
+              <div
+                className="home__card"
+                key={category._id}
+                onClick={() => {
+                  categoryClickHandler(category._id);
+                }}
+              >
+                {category.categoryname}
+              </div>
+            </>
+          );
+        })}
+      </div>
+    </>
   );
 };
 

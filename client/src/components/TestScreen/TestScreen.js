@@ -20,8 +20,9 @@ const TestScreen = ({ history }) => {
       fetch(`http://localhost:5000/question/${currentSelectedCategory._id}`, {
         method: "GET",
         headers: {
-          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmYmEyYzk0MzJiZDE0NDA5MGVmY2Q1ZCIsImlhdCI6MTYwNjAzODU3MH0.2Kk0Pw7jt3o2kPMFzmMztL9vrU5ujJ9kSVShCHcSfB4`,
-          "Content-Type": "application/json;charset=utf-8",
+          // Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmYmEyYzk0MzJiZDE0NDA5MGVmY2Q1ZCIsImlhdCI6MTYwNjAzODU3MH0.2Kk0Pw7jt3o2kPMFzmMztL9vrU5ujJ9kSVShCHcSfB4`,
+          // "Content-Type": "application/json;charset=utf-8",
+          Authorization: "Bearer " + localStorage.getItem("jwt"),
         },
       })
         .then((res) => res.json())
@@ -160,8 +161,8 @@ const TestScreen = ({ history }) => {
         {questions.length != 0 ? (
           <CountdownCircleTimer
             isPlaying
-            // duration={questions.length * 60}
-            duration={6}
+            duration={questions.length * 60}
+            // duration={6}
             colors={[["#004777", 0.33], ["#F7B801", 0.33], ["#A30000"]]}
             onComplete={() => [true, 1000]}
           >

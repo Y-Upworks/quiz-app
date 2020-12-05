@@ -13,8 +13,9 @@ export const Result = () => {
     fetch("http://localhost:5000/result/showresult", {
       method: "GET",
       headers: {
-        Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmYzY1MDNhNGFiNDMwNDcxNDcwM2QzMiIsImlhdCI6MTYwNzA5MzMzNX0.EweZQP3iQu8-gfDPzscoGanTbVd3za1645n3AXbvHdg`,
-        "Content-Type": "application/json;charset=utf-8",
+        Authorization: "Bearer " + localStorage.getItem("jwt"),
+        // Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmYzY1MDNhNGFiNDMwNDcxNDcwM2QzMiIsImlhdCI6MTYwNzA5MzMzNX0.EweZQP3iQu8-gfDPzscoGanTbVd3za1645n3AXbvHdg`,
+        // "Content-Type": "application/json;charset=utf-8",
       },
     })
       .then((res) => res.json())
@@ -47,13 +48,19 @@ export const Result = () => {
                   />
                 </Progressbar>
               </div>
-              <p>TestName: {res.category.categoryname}</p>
-              <p>
+              <p style={{ fontWeight: "bold", fontSize: "20px" }}>
+                TestName: {res.category.categoryname}
+              </p>
+              <p style={{ fontSize: "18px" }}>
                 Marks:{res.marks}/{(res.marks * 100) / res.percentage}
               </p>
-              <p>Percentage: {Math.round(res.percentage)}%</p>
+              <p style={{ fontSize: "18px" }}>
+                Percentage: {Math.round(res.percentage)}%
+              </p>
               <p>Given On:{res.createdAt}</p>
-              <p>Result :{res.percentage > 40 ? "pass" : "fail"}</p>
+              <p style={{ fontWeight: "bold", fontSize: "20px" }}>
+                Result :{res.percentage > 40 ? "pass" : "fail"}
+              </p>
             </div>
           </div>
         );
