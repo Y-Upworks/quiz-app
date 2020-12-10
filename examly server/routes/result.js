@@ -39,6 +39,7 @@ router.get("/showresult", checkAuth, (req, res) => {
       } else {
         Result.find({ user: _id })
           .populate("category")
+          .sort("-createdAt")
           .then((userresults) => {
             res.status(200).json({
               userresults,

@@ -8,6 +8,7 @@ const auth = require("./routes/auth");
 const category = require("./routes/category");
 const question = require("./routes/question");
 const result = require("./routes/result");
+const query = require("./routes/query");
 
 const port = process.env.PORT || 5000;
 
@@ -26,6 +27,7 @@ app.use("/", auth);
 app.use("/category", category);
 app.use("/question", question);
 app.use("/result", result);
+app.use("/query", query);
 
 app.listen(port, () => {
   console.log(`Server is running on ${port}`);

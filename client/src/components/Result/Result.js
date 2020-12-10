@@ -5,7 +5,6 @@ import AuthContext from "../../context/AuthContext";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import Progressbar from "../progressbar/progressbar";
-const percentage = 66;
 
 export const Result = () => {
   const [result, setResult] = useState([]);
@@ -50,12 +49,11 @@ export const Result = () => {
                   >
                     <Progressbar label="Custom colors">
                       <CircularProgressbar
-                        value={percentage}
+                        value={res.percentage}
                         text={`${Math.round(res.percentage)}%`}
                         styles={buildStyles({
                           textColor: "Green",
                           pathColor: "turquoise",
-                          trailColor: "gold",
                         })}
                       />
                     </Progressbar>
@@ -64,7 +62,10 @@ export const Result = () => {
                     TestName: {res.category.categoryname}
                   </p>
                   <p style={{ fontSize: "18px" }}>
-                    Marks:{res.marks}/{(res.marks * 100) / res.percentage}
+                    Marks:{res.marks}/
+                    {res.percentage !== "0"
+                      ? (res.marks * 100) / res.percentage
+                      : 0}
                   </p>
                   <p style={{ fontSize: "18px" }}>
                     Percentage: {Math.round(res.percentage)}%

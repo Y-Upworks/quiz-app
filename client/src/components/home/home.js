@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import M from "materialize-css";
 import CategoryContext from "../../context/CategoryContext";
 
 import "./home.scss";

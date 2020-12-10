@@ -9,6 +9,7 @@ import { Modal } from "react-responsive-modal";
 const TestScreen = ({ history }) => {
   const category = useContext(CategoryContext);
   const [questions, setQuestions] = useState([]);
+  const [marks, setMarks] = useState();
   const auth = useContext(AuthContext);
   const { currentSelectedCategory } = category;
   const [open, setOpen] = useState(false);
@@ -111,6 +112,7 @@ const TestScreen = ({ history }) => {
         marks = marks + 1;
       }
     });
+    setMarks(marks);
     var percentage = (marks * 100) / totalQuestions;
 
     fetch("http://localhost:5000/result/save", {
@@ -155,10 +157,11 @@ const TestScreen = ({ history }) => {
     setOpen(false);
     history.push("/");
   };
+
   return (
     <div className="test" style={{ marginLeft: "39px" }}>
       <div className="timer-wrapper">
-        {questions.length != 0 ? (
+        {questions.length !== 0 ? (
           <CountdownCircleTimer
             isPlaying
             duration={questions.length * 60}
@@ -231,11 +234,9 @@ const TestScreen = ({ history }) => {
         End Test
       </button>
       <Modal open={open} onClose={onCloseModal}>
-        <h2>Simple centered modal</h2>
+        <h2>Your Test has been Submitted.</h2>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-          pulvinar risus non risus hendrerit venenatis. Pellentesque sit amet
-          hendrerit risus, sed porttitor quam.
+          Marks Scored: {marks} out of {questions.length}
         </p>
       </Modal>
     </div>
