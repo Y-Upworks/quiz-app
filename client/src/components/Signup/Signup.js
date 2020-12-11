@@ -68,10 +68,10 @@ const Signup = () => {
           Signup
         </button>
         <h5>
-          <Link to="/signin">Already have an account?</Link>
+          <Link to="/login">Already have an account?</Link>
         </h5>
         <h6>
-          <Link to="/signin">
+          <Link to="/login">
             <h6> Login</h6>
           </Link>
         </h6>

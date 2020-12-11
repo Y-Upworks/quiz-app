@@ -15,8 +15,6 @@ export const Result = () => {
       method: "GET",
       headers: {
         Authorization: "Bearer " + localStorage.getItem("jwt"),
-        // Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmYzY1MDNhNGFiNDMwNDcxNDcwM2QzMiIsImlhdCI6MTYwNzA5MzMzNX0.EweZQP3iQu8-gfDPzscoGanTbVd3za1645n3AXbvHdg`,
-        // "Content-Type": "application/json;charset=utf-8",
       },
     })
       .then((res) => res.json())

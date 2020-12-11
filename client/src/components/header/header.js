@@ -10,7 +10,7 @@ const Header = () => {
   const logout = () => {
     window.localStorage.clear();
     auth.logout();
-    // dispatch({ type: "CLEAR" });
+
     history.push("/login");
   };
 
