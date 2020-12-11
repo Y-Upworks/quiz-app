@@ -1,28 +1,24 @@
 import React, { useContext } from "react";
+import { useHistory } from "react-router-dom";
 import CategoryContext from "../../context/CategoryContext";
 
 import "./home.scss";
 
-const HomePage = (props) => {
+const HomePage = () => {
+  const history = useHistory();
   const categories = useContext(CategoryContext);
 
   const categoryClickHandler = (id) => {
-    const selectCategory = categories.categories.find(
-      (category) => category._id === id
-    );
-
-    categories.setCategory(selectCategory);
-
-    props.history.push("/instructions");
+    history.push(`/category/${id}`);
   };
 
   return (
     <>
       <div className="pic"></div>
       <div className="home">
-        {categories.categories.map((category) => {
-          return (
-            <>
+        {categories.categories &&
+          categories.categories.map((category) => {
+            return (
               <div
                 className="home__card"
                 key={category._id}
@@ -32,9 +28,8 @@ const HomePage = (props) => {
               >
                 {category.categoryname}
               </div>
-            </>
-          );
-        })}
+            );
+          })}
       </div>
     </>
   );

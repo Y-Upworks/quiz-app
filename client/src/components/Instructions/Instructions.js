@@ -1,10 +1,20 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import CategoryContext from "../../context/CategoryContext";
 
 import "./Instructions.scss";
 
-const Instructions = ({ history }) => {
+const Instructions = ({ history, match }) => {
   const categories = useContext(CategoryContext);
+
+  const { cid } = match.params;
+
+  useEffect(() => {
+    const selectCategory = categories.categories.find(
+      (category) => category._id === cid
+    );
+
+    categories.setCategory(selectCategory);
+  }, [categories, cid]);
 
   return (
     <div className="instructions">

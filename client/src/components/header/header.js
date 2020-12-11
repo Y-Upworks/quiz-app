@@ -1,14 +1,13 @@
 import React, { useContext } from "react";
 import { Link, useHistory } from "react-router-dom";
 import "./header.scss";
-import M from "materialize-css";
 import AuthContext from "../../context/AuthContext";
 
 const Header = () => {
   const auth = useContext(AuthContext);
   const history = useHistory();
+
   const logout = () => {
-    window.localStorage.clear();
     auth.logout();
 
     history.push("/login");

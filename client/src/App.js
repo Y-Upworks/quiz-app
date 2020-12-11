@@ -1,11 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  BrowserRouter,
-  Switch,
-  Route,
-  Redirect,
-  useHistory,
-} from "react-router-dom";
+import { Switch, Route, Redirect, useHistory } from "react-router-dom";
 import Header from "./components/header/header";
 import Login from "./components/Login/Login";
 import SignUp from "./components/Signup/Signup";
@@ -16,6 +10,8 @@ import TestScreen from "./components/TestScreen/TestScreen";
 import Result from "./components/Result/Result";
 import AuthContext from "./context/AuthContext";
 import CategoryContext from "./context/CategoryContext";
+import Queries from "./components/Queries/Queries";
+import CategorySession from "./components/CategorySession/CategorySession";
 
 import "./global.styles.scss";
 
@@ -34,7 +30,7 @@ function App() {
     } else {
       history.push("/login");
     }
-  }, []);
+  }, [history]);
 
   const login = (user) => {
     setUser(user);
@@ -42,6 +38,7 @@ function App() {
 
   const logout = () => {
     setUser(null);
+    localStorage.clear("user");
   };
 
   const setCategory = (category) => {
@@ -49,18 +46,20 @@ function App() {
   };
 
   useEffect(() => {
-    fetch("http://localhost:5000/category", {
-      method: "GET",
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("jwt"),
-      },
-    })
-      .then((res) => res.json())
-      .then((result) => setCategories(result.category))
-      .catch((err) => {
-        console.error(err);
-      });
-  }, []);
+    if (user !== null) {
+      fetch("http://localhost:5000/category", {
+        method: "GET",
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("jwt"),
+        },
+      })
+        .then((res) => res.json())
+        .then((result) => setCategories(result.category))
+        .catch((err) => {
+          console.error(err);
+        });
+    }
+  }, [user]);
 
   return (
     <CategoryContext.Provider
@@ -84,9 +83,11 @@ function App() {
             <Route exact path="/login" component={Login} />
             <Route exact path="/signup" component={SignUp} />
             <Route exact path="/admin" component={AdminPanel} />
-            <Route exact path="/instructions" component={Instructions} />
+            <Route exact path="/category/:cid" component={CategorySession} />
+            <Route exact path="/instruction/:cid" component={Instructions} />
             <Route exact path="/testmode" component={TestScreen} />
             <Route exact path="/result" component={Result} />
+            <Route exact path="/query/:cid" component={Queries} />
             <Redirect to="/" />
           </Switch>
         </div>
