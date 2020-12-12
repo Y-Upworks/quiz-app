@@ -22,7 +22,7 @@ router.post("/postquery/:categoryid", checkAuth, (req, res) => {
       })
       .catch((err) => {
         console.log(err);
-        return res.status(500).json({ error: "User Already exists." });
+        return res.status(500).json({ error: "something went wrong" });
       });
   }
 });
