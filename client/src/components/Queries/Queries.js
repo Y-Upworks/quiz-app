@@ -60,7 +60,11 @@ const Queries = ({ match }) => {
           setQuery("");
         } else {
           M.toast({ html: data.message, classes: "#43a047 green darken -1" });
+
           setQuery("");
+          const newques = [...questions, data.result];
+          console.log(newques);
+          setQuestions(newques);
         }
       })
       .catch((err) => {
@@ -159,15 +163,18 @@ const Queries = ({ match }) => {
                     <div className="del">
                       {" "}
                       <p>BY: {ques.user.name}</p>
-                      <i
-                        onClick={() => deleteques(ques._id)}
-                        className="material-icons"
-                        style={{
-                          float: "none",
-                        }}
-                      >
-                        delete
-                      </i>
+                      {(auth.user._id === ques.user._id ||
+                        auth.user._id === "5fc6503a4ab4304714703d32") && (
+                        <i
+                          onClick={() => deleteques(ques._id)}
+                          className="material-icons"
+                          style={{
+                            float: "none",
+                          }}
+                        >
+                          delete
+                        </i>
+                      )}
                     </div>
                   </div>
                   <h5>

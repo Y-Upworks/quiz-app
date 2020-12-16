@@ -44,7 +44,7 @@ const Header = () => {
               </Link>
             </li>
           )}
-          {auth.user && (
+          {auth.user && auth.user._id === "5fc6503a4ab4304714703d32" && (
             <li>
               <Link to="/admin" className="option">
                 ADMIN

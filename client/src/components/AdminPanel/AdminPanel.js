@@ -39,7 +39,7 @@ const AdminPanel = () => {
           className="btn waves-effect waves-light #64b5f6 blue darken-1"
           onClick={() => onPanelClicked("reports")}
         >
-          Reports
+          Clients
         </button>
       </div>
       <div className="admin-panel__content">

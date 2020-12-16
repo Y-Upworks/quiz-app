@@ -15,10 +15,14 @@ router.post("/postquery/:categoryid", checkAuth, (req, res) => {
       category: categoryid,
       user: req.user._id,
     });
+    newquery.populate("user", "_id name").execPopulate();
     newquery
       .save()
       .then((result) => {
-        res.status(200).json({ message: "success", result: result });
+        res.status(200).json({
+          message: "success",
+          result: result,
+        });
       })
       .catch((err) => {
         console.log(err);
@@ -91,14 +95,12 @@ router.put("/deletesolution", (req, res) => {
     })
     .catch((err) => console.log(err));
 }),
-  router.delete("/deletequery/:postId", (req, res) => {
+  router.delete("/deletequery/:quesId", (req, res) => {
     Query.findOne({ _id: req.params.quesId })
-      .populate("user", "_id")
-      .exec((err, ques) => {
-        if (err || !ques) {
-          return res.status(422).json({ error: err });
-        }
-        if (Query.user._id.toString() === req.user._id.toString()) {
+      .then((ques) => {
+        if (!ques) {
+          return res.status(400).json({ err: "not found" });
+        } else {
           ques
             .remove()
             .then((result) => {
@@ -108,6 +110,7 @@ router.put("/deletesolution", (req, res) => {
               console.log("err");
             });
         }
-      });
+      })
+      .catch((err) => console.log(err));
   });
 module.exports = router;
