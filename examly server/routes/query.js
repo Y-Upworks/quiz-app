@@ -33,7 +33,7 @@ router.get("/queries/:categoryid", (req, res) => {
     return res.status(422).json({ err: "all felds are required" });
   } else {
     Query.find({ category: categoryid })
-      .populate("postedBy", "_id name pic")
+      .populate("user", "_id name")
       .populate("solution.postedBy", "_id name")
       .sort("-createdAt")
       .then((queries) => {
@@ -46,7 +46,7 @@ router.get("/queries/:categoryid", (req, res) => {
   }
 });
 
-router.put("/solution", (req, res) => {
+router.put("/solution", checkAuth, (req, res) => {
   const solution = {
     text: req.body.text,
     postedBy: req.user._id,
@@ -60,33 +60,30 @@ router.put("/solution", (req, res) => {
       new: true,
     }
   )
-    .populate("solution.postedBy", "_id name")
-    .populate("postedBy", "_id name")
+    .populate("solution.postedBy", "_id name") //populate krega solution isne post kiya
+    .populate("user", "_id name") //ques kiska tha
     .exec((err, result) => {
       if (err) {
         return res.status(422).json({ error: err });
       } else {
-        res.json(result);
+        res.status(200).json({ result: result });
       }
     });
 });
 
 router.put("/deletesolution", (req, res) => {
   const _id = req.body.solutionId;
-  console.log(req.body.postId);
-  console.log(req.body.commentId);
-  Query.findOne({ _id: req.body.postId })
+  Query.findOne({ _id: req.body.quesId })
     .populate("solution.postedBy", "_id name")
-    .populate("postedBy", "_id name")
+    .populate("user", "_id name")
     .then((postexist) => {
       if (postexist) {
-        console.log(postexist);
         postexist.solution = postexist.solution.filter((comment) => {
           return comment._id.toString() !== _id.toString();
         });
         postexist
           .save()
-          .then((result) => res.json(result))
+          .then((result) => res.status(200).json({ result: result }))
           .catch((err) => console.log(err));
       } else {
         res.status(422).json({ err: "post not exists" });
@@ -95,20 +92,20 @@ router.put("/deletesolution", (req, res) => {
     .catch((err) => console.log(err));
 }),
   router.delete("/deletequery/:postId", (req, res) => {
-    Query.findOne({ _id: req.params.postId })
-      .populate("postedBy", "_id")
-      .exec((err, post) => {
-        if (err || !post) {
+    Query.findOne({ _id: req.params.quesId })
+      .populate("user", "_id")
+      .exec((err, ques) => {
+        if (err || !ques) {
           return res.status(422).json({ error: err });
         }
-        if (post.postedBy._id.toString() === req.user._id.toString()) {
-          post
+        if (Query.user._id.toString() === req.user._id.toString()) {
+          ques
             .remove()
             .then((result) => {
               res.json(result);
             })
             .catch((err) => {
-              console.log(err);
+              console.log("err");
             });
         }
       });
