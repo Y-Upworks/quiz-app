@@ -22,3 +22,20 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.carousel.carousel-slider {
+  height: 90vh !important;
+}
+
+.carousel-root .carousel {
+  height: 10rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .carousel.carousel-slider {
+    height: auto !important;
+  }
+}

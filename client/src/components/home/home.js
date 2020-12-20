@@ -15,41 +15,26 @@ const HomePage = () => {
 
   return (
     <>
-      {/* <div className="pic"></div> */}
-      {/* <div class="carousel-wrapper">
-        <Carousel infiniteLoop useKeyboardArrows autoPlay>
-          <div className="slider">
-            <img className="slider" src="../../learn1.jpg" />
+      <div class="carousel-wrapper">
+        <Carousel
+          infiniteLoop
+          useKeyboardArrows
+          autoPlay
+          axis="horizontal|vertical"
+          showThumbs={true}
+          showArrows={true}
+        >
+          <div>
+            <img src="../../learn1.jpg" alt="carousel-one" />
           </div>
           <div>
-            <img className="slider" src="../../learn2.jpg" />
+            <img src="../../learn1.jpg" alt="carousel-two" />
           </div>
           <div>
-            <img className="slider" src="../../learn3.jpg" />
+            <img src="../../learn1.jpg" alt="carousel-three" />
           </div>
         </Carousel>
-      </div> */}
-      <Carousel
-        axis="horizontal|vertical"
-        showThumbs={true | false}
-        showArrows={true | false}
-        // onChange={onChange}
-        // onClickItem={onClickItem}
-        // onClickThumb={onClickThumb}
-      >
-        <div>
-          <img src="../../learn1.jpg" />
-          <p className="legend">Legend 1</p>
-        </div>
-        <div>
-          <img src="../../learn1.jpg" />
-          <p className="legend">Legend 2</p>
-        </div>
-        <div>
-          <img src="../../learn1.jpg" />
-          <p className="legend">Legend 3</p>
-        </div>
-      </Carousel>
+      </div>
       <div className="home">
         {categories.categories &&
           categories.categories.map((category) => {
