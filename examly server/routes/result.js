@@ -35,7 +35,7 @@ router.get("/showresult", checkAuth, (req, res) => {
     .then((userexist) => {
       console.log(userexist);
       if (!userexist) {
-        res.status(200).json({ message: "no result found" });
+        res.status(200).json({ message: "no result found", userresults: [] });
       } else {
         Result.find({ user: _id })
           .populate("category")
