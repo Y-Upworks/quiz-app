@@ -3,6 +3,7 @@ import { Modal } from "react-responsive-modal";
 import M from "materialize-css";
 import "./Queries.scss";
 import AuthContext from "../../context/AuthContext";
+import img from "../../images/faq.jpg";
 
 const Queries = ({ match }) => {
   const auth = useContext(AuthContext);
@@ -152,7 +153,8 @@ const Queries = ({ match }) => {
       <button onClick={onOpenModal}>ASK QUERY</button>
 
       {questions == null ? (
-        <p>no questions</p>
+        // <p>no questions</p>
+        <img style={{ width: "70vw", marginTop: "20px" }} src={img} />
       ) : (
         questions.map((ques) => {
           return (
