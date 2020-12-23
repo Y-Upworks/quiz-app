@@ -12,7 +12,7 @@ import AuthContext from "./context/AuthContext";
 import CategoryContext from "./context/CategoryContext";
 import Queries from "./components/Queries/Queries";
 import CategorySession from "./components/CategorySession/CategorySession";
-
+import Footer from "./components/footer/footer";
 import "./global.styles.scss";
 
 function App() {
@@ -87,8 +87,10 @@ function App() {
             <Route exact path="/testmode" component={TestScreen} />
             <Route exact path="/result" component={Result} />
             <Route exact path="/query/:cid" component={Queries} />
+
             <Redirect to="/" />
           </Switch>
+          <Footer></Footer>
         </div>
       </AuthContext.Provider>
     </CategoryContext.Provider>

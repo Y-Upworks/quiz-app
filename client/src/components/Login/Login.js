@@ -49,7 +49,7 @@ const Login = ({ history }) => {
   };
 
   return (
-    <div className="mycard">
+    <div style={{ marginBottom: "4.9rem" }} className="mycard">
       <div className="card auth-card">
         <h2>Examly</h2>
         <input

@@ -4,6 +4,7 @@ import CategoryContext from "../../context/CategoryContext";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import "./home.scss";
+import Footer from "../footer/footer";
 
 const HomePage = () => {
   const history = useHistory();
