@@ -85,6 +85,7 @@ router.get("/users", (req, res) => {
   User.find()
     .then((user) => {
       if (user.length < 1) {
+        console.log(user);
         res.status(200).json({
           message: "no user found",
         });
