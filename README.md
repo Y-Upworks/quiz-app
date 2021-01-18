@@ -1,1 +1,2 @@
 # Quiz-app
+mcq platform
